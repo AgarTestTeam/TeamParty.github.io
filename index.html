@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta http-equiv="content-language" content="ko" />
+	<meta http-equiv="X-Content-Type-Options=nosniff" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" charset="UTF-8" content="text/html;" />
+	<meta http-equiv="Content-Security-Policy" content="child-src 'none'; object-src 'none'" />
+	<meta name="keywords" content="Amaras" />
+	<meta name="theme-color" content="#000000" />
+	<meta name="description" content="Project Amaras" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta property="og:type" content="game" />
+	<meta property="og:title" content="Amaras" />
+	<meta property="og:description" content="Project Amaras" />
+
+	<title>Project Amaras</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" />
+		<link rel="stylesheet" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+		
+		<link rel="stylesheet" href="./client/css/original.css" />
+		<link rel="shortcut icon" type="image/png" href="./client/image/favicon.png" />
+</head>
+
+<body>
+	<div id="Overlays">
+		<div class="Panel">
+			<ul class="nav nav-tabs">
+				<span class="WC">Project Amaras</span>
+				<li class="active"><a class="h" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+				<li><a data-toggle="tab" onclick="Setting();"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+				<br />
+			</ul>
+			
+			<div id="h" class="Home tab-pane fade in active">
+				<noscript><p>자바스크립트가 비허용 된 상태입니다, 허용해주시고 새로고침 해 주시기 바랍니다.</p></noscript>
+				<!--[if lte IE 10]>
+				<p>구형 브라우저를 사용하시는 상태입니다. 크롬이나 오페라, 웨일 등의 브라우저를 사용하여 주시기 바랍니다.</p>
+				<![endif]-->
+				<input id="nick" class="save" data-box-id="0" type="text" placeholder="닉네임" maxlength="24" autofocus="" />
+				<input id="skinURL" class="save" data-box-id="40" type="text" placeholder="스킨" maxlength="180" autofocus="" />
+				<br />
+				<div class="Button">
+					<button onclick="usernk(); return false;" class="btn-play btn-sv"><i class="fa fa-gamepad" aria-hidden="true"></i></button>
+					<button onclick="spectate(); return false;" class=
+					"btn-spectate btn-sv"><i class="fa fa-eye" aria-hidden="true"></i></button>
+				</div>
+				<div class="Preview">
+					<img class="Round" width="80" height="80" alt="" />
+				</div>
+			</div>
+			
+			<div class="SA modal fade" id="SettingAlert" role="dialog">
+				<div class="modal-dialog MDheight">
+					<div class="SA-modal modal-content">
+						<div id="SettingHead" class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" onclick='$(".h").click()'>&times;</button>
+							<p class="WC WC2">Option</p>
+							<div class="MoreSetting">
+								<button type="button" class="btn-green" data-dismiss="modal" onclick="DTSetting();">세포</button>
+								<button type="button" class="btn-cyan" data-dismiss="modal" onclick="KeySetting();">단축기</button>
+							</div>
+						</div>
+							
+						<div id="SettingBody" class="modal-body">
+							<input type="checkbox" id="STCKbox1" class="save" data-box-id="1" onchange="setNames(!$(this).is(':checked'));" />
+							<label for="STCKbox1" class="Label">닉네임 제거</label>
+							
+							<input type="checkbox" id="STCKbox2" class="save" data-box-id="2" onchange="setShowMass($(this).is(':checked'));" />
+							<label for="STCKbox2" class="Label">메스 표시</label>
+							
+							<input type="checkbox" id="STCKbox3" class="save" data-box-id="3" onchange="setColors($(this).is(':checked'));" />
+							<label for="STCKbox3" class="Label">색상 제거</label>
+							
+							<input type="checkbox" id="STCKbox4" class="save MGRT" data-box-id="4" onchange="setDarkTheme($(this).is(':checked'));" />
+							<label for="STCKbox4" class="Label">암흑 테마</label>
+							
+							<input type="checkbox" id="STCKbox5" class="save MGRT2" data-box-id="5" onchange="setChatHide($(this).is(':checked'));" />
+							<label for="STCKbox5" class="Label">채팅 제거</label>
+							
+							<input type="checkbox" id="STCKbox6" class="save MGRT" data-box-id="6" onchange="setSmooth($(this).is(':checked'));" />
+							<label for="STCKbox6" class="Label">부드러운 테두리</label>
+							<br />
+							
+							<input type="checkbox" id="STCKbox7" class="save" data-box-id="7" onchange="setminimap($(this).is(':checked'));" />
+							<label for="STCKbox7" class="Label">미니맵 제거</label>
+							
+							<input type="checkbox" id="STCKbox8" class="save" data-box-id="8" onchange="setline($(this).is(':checked'));" />
+							<label for="STCKbox8" class="Label">격자 무늬</label>
+							
+							<input type="checkbox" id="STCKbox9" class="save" data-box-id="9" onchange="setlsd($(this).is(':checked'));" />		
+							<label for="STCKbox9" class="Label">어지러운 모드</label>
+							
+							<input type="checkbox" id="STCKbox10" class="save" data-box-id="10" onchange="seteffect($(this).is(':checked'));" />	
+							<label for="STCKbox10" class="Label br">이펙트 모드</label>
+							
+							<input type="checkbox" id="STCKbox11" class="save" data-box-id="11" onchange="setBlink($(this).is(':checked'));" />
+							<label for="STCKbox11" class="Label br">깜빡이 모드</label>				
+					
+							<div class="Br">
+								<span class="Label">사양 조정</span>
+								<input type="range" min="0" max="7" value="4" class="save range" data-box-id="15" onchange="setQuality($(this).val());" />	
+								<br />
+
+								<span class="Label">줌 속도 조정</span>		
+								<input id="rangeBottom" type="range" min="0.7" max="0.99" step="0.001" value="0.88" class="save range" data-box-id="17" onchange="setZoom($(this).val());" />
+								<br />
+								
+								<span class="Label">채팅 유지시간 조정</span>
+								<input type="range" min="100" max="10000" step="100" value="2400" class="save range" data-box-id="26" onchange="setChatTime($(this).val());" />
+								<br />
+							</div>
+						</div>
+							
+						<div class="modal-footer">
+							<button type="button" class="modalBtn" data-dismiss="modal" onclick='$(".h").click()'>닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="SA modal fade" id="DTSetting" role="dialog">
+				<div class="modal-dialog MDheight">
+					<div class="SA-modal modal-content">
+						<div id="DTSettingHead" class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" onclick='$(".h").click()'>&times;</button>
+							<p class="WC WC2">Detail Option</p>
+						</div>
+							
+						<div id="SettingBody" class="modal-body">
+							<div class="Br">		
+								<span class="Label">세포 색상</span>
+								<input type="range" min="0" max="255" step="1" value="0" class="save rangeR" data-box-id="18" onchange="setRedCellColors($(this).val());" />
+								<br />
+								
+								<input type="range" min="0" max="255" step="1" value="0" class="save rangeG" data-box-id="19" onchange="setGreenCellColors($(this).val());" />
+								<br />
+			
+								<input type="range" min="0" max="255" step="1" value="0" class="save rangeB" data-box-id="20" onchange="setBlueCellColors($(this).val());" />
+								<br />
+								
+								<span class="Label">투명화 조정</span>
+								<input type="range" min="0" max="1" step="0.01" value="1" class="save range" data-box-id="16" onchange="setAlpha($(this).val());" />
+								<br />
+								
+								<span class="Label">선 굵기 설정</span>
+								<input type="range" min="0" max="3" step="0.01" value="1" class="save range" data-box-id="21" onchange="setLineWidth($(this).val());" />
+								<br />
+							</div>
+						</div>
+							
+						<div class="modal-footer">
+							<button type="button" class="modalBtn" data-dismiss="modal" onclick='$(".h").click()'>닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="SA modal fade" id="KeySetting" role="dialog">
+				<div class="modal-dialog MDheight">
+					<div class="SA-modal modal-content">
+						<div id="KeySettingHead" class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" onclick='$(".h").click()'>&times;</button>
+							<p class="WC WC2">Key Setting</p>
+						</div>
+							
+						<div id="SettingBody" class="modal-body">
+							<div class="Br">		
+								<span class="Label">z키 단축기</span>
+								<input type="text" id="KeyST" class="keyz save" data-box-id="22" />
+								<br />
+								
+								<span class="Label">x키 단축기</span>
+								<input type="text" id="KeyST" class="keyx save" data-box-id="23" />
+								<br />
+								
+								<span class="Label">c키 단축기</span>
+								<input type="text" id="KeyST" class="keyc save" data-box-id="24" />
+								<br />
+								
+								<span class="Label">v키 단축기</span>
+								<input type="text" id="KeyST" class="keyv save" data-box-id="25" />
+							</div>
+						</div>
+							
+						<div class="modal-footer">
+							<button type="button" class="modalBtn" data-dismiss="modal" onclick='$(".h").click()'>닫기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="HideTitle">
+				<p class="Main"></p>
+			</div>
+		</div>
+	</div>
+
+	<canvas id="Canvas"></canvas>
+	<input type="text" id="chat_textbox" placeholder="엔터를 눌러 채팅하세요!" maxlength="200" />
+
+	<div id="Connecting"></div>
+	
+	<div class="modal fade" id="Alert" role="dialog">
+		<div class="modal-dialog">
+			<div class="Trans modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body">
+					<p class="modalBody"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="modalBtn Green" data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.10/webfont.js" charset="UTF-8" async></script>
+	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="./client/js/original.js" charset="UTF-8" defer></script>
+</body>
+</html>
